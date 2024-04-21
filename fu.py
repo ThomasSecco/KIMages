@@ -16,7 +16,6 @@ def load_embeddings(file_path):
                 pass
     return embeddings_index
 
-glove_embeddings = load_embeddings('vector.txt')
 
 
 def meaning_similarity(word1, word2, embeddings):
