@@ -1,13 +1,5 @@
 from transformers import GPT2TokenizerFast, ViTImageProcessor, VisionEncoderDecoderModel
-from torch.utils.data import Dataset
-import requests
-import torch
-import numpy as np
 from PIL import Image
-import pickle
-import matplotlib.pyplot as plt
-import os
-from tqdm import tqdm
 
 import warnings
 warnings.filterwarnings('ignore')

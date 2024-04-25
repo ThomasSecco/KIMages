@@ -33,5 +33,3 @@ def eval(image):
             predictions.append((cifar100.classes[index], 100 * value.item()))
 
     return predictions
-
-print(eval('./chat.jpg'))

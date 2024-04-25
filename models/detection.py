@@ -2,7 +2,6 @@
 from PIL import Image
 import matplotlib.pyplot as plt
 import torch
-import torchvision.transforms as T
 import torchvision
 import torch
 import numpy as np
@@ -47,6 +46,7 @@ def get_prediction(img_path, threshold):
         are chosen.
     
   """
+  import torchvision.transforms as T
   img = Image.open(img_path)
   transform = T.Compose([T.ToTensor()])
   img = transform(img)
