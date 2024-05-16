@@ -7,6 +7,7 @@ import torch
 import numpy as np
 import cv2
 import os
+import shutil
 
 # get the pretrained model from torchvision.models
 # Note: pretrained=True will get the pretrained weights for the model.
@@ -65,35 +66,33 @@ def get_prediction(img_path, threshold):
   
 
 
-def object_detection(img_path, threshold=0.5, rect_th=3, text_size=3, text_th=3):
-  """
-  object_detection_api
-    parameters:
-      - img_path - path of the input image
-      - threshold - threshold value for prediction score
-      - rect_th - thickness of bounding box
-      - text_size - size of the class label text
-      - text_th - thichness of the text
-    method:
-      - prediction is obtained from get_prediction method
-      - for each prediction, bounding box is drawn and text is written 
-        with opencv
-      - the final image is displayed
-  """
-  boxes, pred_cls = get_prediction(img_path, threshold)
-  img = cv2.imread(img_path)
-  img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
-    
-  for i in range(len(boxes)):
-      pt1 = (int(boxes[i][0][0]), int(boxes[i][0][1]))  # Top-left corner
-      pt2 = (int(boxes[i][1][0]), int(boxes[i][1][1]))  # Bottom-right corner
+def object_detection_and_save(img_path, save_dir, threshold=0.5):
+    """
+    object_detection_and_save
+      parameters:
+        - img_path: path of the input image
+        - save_dir: directory to save the cropped bounding box images
+        - threshold: threshold value for prediction score
+      method:
+        - prediction is obtained from get_prediction method
+        - for each prediction, bounding box is used to crop the image
+        - cropped images are saved in the specified directory
+    """
+    boxes, pred_cls = get_prediction(img_path, threshold)
+    img = cv2.imread(img_path)  
+    [os.remove(os.path.join(save_dir, f)) for f in os.listdir(save_dir)]      
+
+    for i, box in enumerate(boxes):
+        # Extract coordinates of bounding box
+        (startX, startY) = (int(box[0][0]), int(box[0][1]))
+        (endX, endY) = (int(box[1][0]), int(box[1][1]))
         
-      cv2.rectangle(img, pt1, pt2, color=(0, 255, 0), thickness=rect_th)
-      cv2.putText(img, pred_cls[i], pt1, cv2.FONT_HERSHEY_SIMPLEX, text_size, (0, 255, 0), thickness=text_th)
-    
-  plt.figure(figsize=(20, 30))
-  plt.imshow(img)
-  plt.xticks([])
-  plt.yticks([])
-  plt.show()
+        # Crop the image using bounding box coordinates
+        cropped_img = img[startY:endY, startX:endX]
+        
+        # Generate a filename for the cropped image
+        filename = os.path.join(save_dir, f"cropped_image_{i}.jpg")
+        
+        # Save the cropped image
+        cv2.imwrite(filename, cropped_img)
 
