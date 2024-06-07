@@ -2,7 +2,7 @@ from vect import simi
 import pandas as pd
 
 def benchmark(df,epsilon=0.8): #epsilon representing the quantile 
-    df1=df.drop(columns=['Bildbez','Productivity','Photo scene','Photo title','Note','class','Description'])
+    df1=df.drop(columns=['Bildbez','Photo scene','Photo title','Note','class','Description'])
     x=df[['Photo scene','Photo title','Note','Description']]
     x=x.fillna('')
     df1=df1.fillna(0)

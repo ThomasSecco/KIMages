@@ -114,9 +114,9 @@ def score(found_in_all, found_in_two, found_in_one, caption):
 
 def details(image,res):#res is the output of the results function above
     a=[]
-    detection.object_detection_and_save(image,'c:/Stage/Furtwangen/models/im')
+    detection.object_detection_and_save(image,'c:/Users/tomse/OneDrive - IMT Mines Albi/Documents/école/IFIE2\Stage2/stage/Furtwangen/models/im')
     for i in range (len(res[2])):
         for x in res[0].split():
             if simi(res[2][i],x)>0.5:
-                a.append(captionning.show_n_generate(f'c:/Stage/Furtwangen/models/im/cropped_image_{i}.jpg'))
+                a.append(captionning.show_n_generate(f'c:/Users/tomse/OneDrive - IMT Mines Albi/Documents/école/IFIE2\Stage2/stage/Furtwangen/models/im/cropped_image_{i}.jpg'))
     return np.unique(a).tolist()
