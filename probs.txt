@@ -1,7 +1,0 @@
-1,2,3: x=[0.1:0.9]
-4: x=0.3
-5: x=[0.2,0.3,0.4] with seed 42 and determinist
-6: x=0.3 seed=range(0,60,10)
-7: learning rate=[2e-5,2e-4,2e-3]
-8:learning rate=[2e-5,2e-4,2e-3]*x=[0.2,0.3,0.4]
-9,10:x=[0.25,0.3,0.35]*learning rate=[2e-4,2e-3]
