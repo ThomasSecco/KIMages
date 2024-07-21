@@ -1,14 +1,14 @@
 from models import description
 import pickle
 
-def desc(df):
+def desc(df, path):
     """
     Process a DataFrame to add a description to each row based on the image associated with it.
     The description process uses an image processing model to evaluate and describe images.
 
     Parameters:
         df (DataFrame): A pandas DataFrame that includes a column 'Bildbez' with image filenames.
-
+        path : Path to the folder containing images.
     Returns:
         DataFrame: The original DataFrame augmented with a new 'Description' column.
     """
@@ -25,7 +25,7 @@ def desc(df):
     # Start processing from where the last progress was saved.
     i = len(desc)  # Index to track the number of processed entries.
     for x in df['Bildbez'][len(desc):]:  # Only process unprocessed entries.
-        path = f'../Images/{x}.jpg'  # Construct the full path to the image.
+        path = path+ f'/{x}.jpg'  # Construct the full path to the image.
         try:
             # Use the description module to process the image and get results.
             res = description.results(path)
