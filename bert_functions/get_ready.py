@@ -71,7 +71,11 @@ def ready(df):
             df[col] = df[col].fillna(0)
 
     # Remove columns not used in the predictive model and keep y_true labels
-    y_true = df.drop(columns=['Bildbez', 'Photo scene', 'Photo title', 'Note', 'Description'])
+    y_true = df.drop(columns=['Bildbez', 'Photo scene', 'Photo title', 'Note', 'Description','Productive','Unproductive','Positive','Negative'])
+    y_true.rename(columns={'Produktivität': 'Productivity','Valenz' : 'Valence'},inplace=True)
 
     # Concatenate text fields into a single 'combined' column for further text analysis
-    df['combined'] = df['Photo scene'] + '. ' + df['Photo title'] + '. ' + df['
+    df['combined'] = df['Photo scene'] + '. ' + df['Photo title'] + '. ' + df['Note']+ '. ' + df['Description']
+    df=df.drop(columns=['Bildbez', 'Photo scene', 'Photo title', 'Note', 'Description','Produktivität','Valenz'])
+
+    return df,y_true
