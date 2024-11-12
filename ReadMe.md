@@ -1,4 +1,4 @@
-# 🎉 KImAge: Exploring Aging Perceptions Through User-Generated Photos 📸
+# KImAge: Exploring Aging Perceptions Through User-Generated Photos 📸
 
 Welcome to the **KImAge Project** – a unique study that dives into the multifaceted perceptions of aging, leveraging the power of computer vision and natural language processing. This project was conducted as part of an internship at **Furtwangen University** 🏫, where I worked as an intern researcher. The study provides insights into age-specific themes through the analysis of user-generated photos and descriptions, offering a comprehensive view of aging across different life stages.
 
